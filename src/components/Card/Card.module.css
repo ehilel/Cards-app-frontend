@@ -5,8 +5,8 @@
   color: white;
   position: relative;
   display: flex;
-  align-items: center; 
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   cursor: pointer;
   overflow: auto;
@@ -14,51 +14,58 @@
 }
 
 .content {
-  overflow-y: auto; 
-  max-height: 100px; 
-  padding-right: 5px; 
+  overflow-y: auto;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  max-height: 100px;
+  padding-right: 8px;
 }
 
 .textInput {
-  padding: 8px; /* ריווח פנימי */
-  background-color:none;
-  border: none; 
-  border-radius: 5px; /* רדיוס הקצוות */
-  color: white; /* צבע טקסט */
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  width: 222px;
+  height: 100px;
+  border: none;
+  background: transparent;
+  resize: none;
+  text-align: center;
+  overflow-y:auto;
+  color: white;
 }
 
 .textInput:focus {
-  outline: none; /* הסרת קו המתאר כאשר הקלט פעיל */
-  background-color: rgba(255, 255, 255, 0.2); 
+  outline: none;
 }
 
-
-.content::-webkit-scrollbar {
-  width: 10px; 
+/* עיצוב הסרגל עבור שני האלמנטים */
+.content::-webkit-scrollbar,
+.textInput::-webkit-scrollbar {
+  width: 10px;
 }
 
-.content::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track,
+.textInput::-webkit-scrollbar-track {
   background: var(--scrollbar-track-color);
 }
 
-.content::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb,
+.textInput::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
-.content::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+.content::-webkit-scrollbar-thumb:hover,
+.textInput::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
+
 
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  gap: 8px; 
+  gap: 8px;
   justify-content: space-between;
   width: 100%;
-  margin-top: auto; 
+  margin-top: auto;
 }
-
-
-
-  

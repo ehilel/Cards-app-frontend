@@ -29,9 +29,9 @@ const Card = ({ card, setCards, cards }) => {
 
     return (
         <div className={styles.card} style={{ backgroundColor: card.color }}>
-            <div class={styles.content} style={{ '--scrollbar-track-color': card.color }}>
+            <div >
                 {isEditing ? (
-                    <input
+                    <textarea 
                         type="text"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
@@ -41,9 +41,11 @@ const Card = ({ card, setCards, cards }) => {
                         }}
                         autoFocus
                         className={styles.textInput}
+                        style={{ '--scrollbar-track-color': card.color }}
                     />
                 ) : (
-                    <div onClick={() => setIsEditing(true)}>{card.text}</div>
+                    <div class={styles.content} style={{ '--scrollbar-track-color': card.color }}
+                    onClick={() => setIsEditing(true)}>{card.text}</div>
                 )}
             </div>
             <div className={styles.buttonContainer}>
