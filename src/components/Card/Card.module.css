@@ -9,9 +9,46 @@
   justify-content: space-between; 
   flex-direction: column;
   cursor: pointer;
+  overflow: auto;
   border-radius: 10%;
 }
 
+.content {
+  overflow-y: auto; 
+  max-height: 100px; 
+  padding-right: 5px; 
+}
+
+.textInput {
+  padding: 8px; /* ריווח פנימי */
+  background-color:none;
+  border: none; 
+  border-radius: 5px; /* רדיוס הקצוות */
+  color: white; /* צבע טקסט */
+}
+
+.textInput:focus {
+  outline: none; /* הסרת קו המתאר כאשר הקלט פעיל */
+  background-color: rgba(255, 255, 255, 0.2); 
+}
+
+
+.content::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.content::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px; 
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 
 .buttonContainer {
   display: flex;
@@ -21,5 +58,7 @@
   width: 100%;
   margin-top: auto; 
 }
+
+
 
   

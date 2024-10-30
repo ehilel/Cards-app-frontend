@@ -29,31 +29,34 @@ const Card = ({ card, setCards, cards }) => {
 
     return (
         <div className={styles.card} style={{ backgroundColor: card.color }}>
-            {isEditing ? (
-                <input
-                    type="text"
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    onBlur={() => {
-                        editCard({ ...card, text });
-                        setIsEditing(false);
-                    }}
-                    autoFocus
-                />
-            ) : (
-                <div onClick={() => setIsEditing(true)}>{card.text}</div>
-            )}
+            <div class={styles.content} style={{ '--scrollbar-track-color': card.color }}>
+                {isEditing ? (
+                    <input
+                        type="text"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        onBlur={() => {
+                            editCard({ ...card, text });
+                            setIsEditing(false);
+                        }}
+                        autoFocus
+                        className={styles.textInput}
+                    />
+                ) : (
+                    <div onClick={() => setIsEditing(true)}>{card.text}</div>
+                )}
+            </div>
             <div className={styles.buttonContainer}>
                 <button onClick={() => setShowColorPicker(!showColorPicker)}>🎨</button>
                 {showColorPicker && (
-                <ColorPicker
-                    selectedColor={card.color}
-                    onSelectColor={(color) => {
-                        editCard({ ...card, color });
-                        setShowColorPicker(false);
-                    }}
-                />
-            )}
+                    <ColorPicker
+                        selectedColor={card.color}
+                        onSelectColor={(color) => {
+                            editCard({ ...card, color });
+                            setShowColorPicker(false);
+                        }}
+                    />
+                )}
                 <button onClick={removeCard}>🗑️</button>
             </div>
         </div>

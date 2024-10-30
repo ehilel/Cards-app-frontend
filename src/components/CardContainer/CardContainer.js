@@ -7,18 +7,17 @@ const CardContainer = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await getCards();
+        setCards(response.data);
+      } catch (error) {
+        console.error('Error fetching cards:', error);
+      }
+    };
     fetchCards();
   }, []);
 
-  const fetchCards = async () => {
-    try {
-      const response = await getCards();
-      setCards(response.data);
-    } catch (error) {
-      console.error('Error fetching cards:', error);
-    }
-  };
-console.log(cards);
   const addCard = async () => {
     const newCard = { text: 'New Card', color: 'green' };
     try {

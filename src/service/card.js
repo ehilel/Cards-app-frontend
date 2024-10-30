@@ -1,26 +1,21 @@
 import {http} from './http'
 
-export function getCards()
-{
-  return http.get('/')
+export const getCards = () =>{
+    return http.get('/')
 }
 
-export function getCardById(id)
-{
+export const getCardById = (id) =>{
     return http.get(`/${id}`)
 }
 
-export function createCard(card)
-{
+export const createCard = (card) =>{
     return http.post('/', card)
 }
 
-export function updateCard(id, card)
-{
+export const updateCard = (id, card) =>{
     return http.patch(`/${id}`, card)
 }
 
-export function deleteCard(id)
-{
+export const deleteCard = (id) =>{
     return http.delete(`/${id}`)
 }
