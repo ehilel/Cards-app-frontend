@@ -1,0 +1,12 @@
+.colorPicker {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .colorPicker span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50%;
+  }
