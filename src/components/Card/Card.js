@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
 import styles from './Card.module.css';
-import { updateCard, deleteCard } from '../../service/card';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
-const Card = ({ card, setCards, cards }) => {
+const Card = ({ card, editCard, removeCard }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState(card.text);
     const [showColorPicker, setShowColorPicker] = useState(false);
 
-    const editCard = async (updatedCard) => {
-        try {
-            const response = await updateCard(card.id, updatedCard);
-            setCards(cards.map(c => (c.id === card.id ? response.data : c)));
-        } catch (error) {
-            console.error('Error updating card:', error);
-        }
+    const handleEditCard = (updatedCard) => {
+        console.log(updatedCard)
+        console.log(card.id)
+        editCard(card.id, updatedCard)
     };
+    
+    const handleRemoveCard = () => {
+        removeCard(card.id);
+    };
+    // const editCard = async (updatedCard) => {
+    //     try {
+    //         const response = await updateCard(card.id, updatedCard);
+    //         setCards(cards.map(c => (c.id === card.id ? response.data : c)));
+    //     } catch (error) {
+    //         console.error('Error updating card:', error);
+    //     }
+    // };
 
-    const removeCard = async () => {
-        try {
-            await deleteCard(card.id);
-            console.log(card.id);
-            setCards(cards.filter(c => c.id !== card.id));
-        } catch (error) {
-            console.error('Error deleting card:', error);
-        }
+    const selectColor = (color) => {
+        handleEditCard({ ...card, color });
+        setShowColorPicker(false);
     };
 
     return (
@@ -36,7 +39,7 @@ const Card = ({ card, setCards, cards }) => {
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         onBlur={() => {
-                            editCard({ ...card, text });
+                            handleEditCard({ ...card, text });
                             setIsEditing(false);
                         }}
                         autoFocus
@@ -44,7 +47,7 @@ const Card = ({ card, setCards, cards }) => {
                         style={{ '--scrollbar-track-color': card.color }}
                     />
                 ) : (
-                    <div class={styles.content} style={{ '--scrollbar-track-color': card.color }}
+                    <div className={styles.content} style={{ '--scrollbar-track-color': card.color }}
                     onClick={() => setIsEditing(true)}>{card.text}</div>
                 )}
             </div>
@@ -53,13 +56,10 @@ const Card = ({ card, setCards, cards }) => {
                 {showColorPicker && (
                     <ColorPicker
                         selectedColor={card.color}
-                        onSelectColor={(color) => {
-                            editCard({ ...card, color });
-                            setShowColorPicker(false);
-                        }}
+                        onSelectColor={selectColor}
                     />
                 )}
-                <button onClick={removeCard}>🗑️</button>
+                <button onClick={handleRemoveCard}>🗑️</button>
             </div>
         </div>
     );
